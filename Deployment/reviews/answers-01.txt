@@ -1,0 +1,49 @@
+# 1. In the command line syntax 'command_name [-option] [argument]', '--' represents a single-character option.
+#    (true/false)
+
+# 2. In bash history expansion, what does '!$' represent?
+
+# 3. '!!' reruns the previous command in bash.
+#    (true/false)
+
+# 4. What command must you run before CTRL+s (forward search history) will work in the shell?
+
+# 5. 'CTRL + e' moves the cursor to the start of the line.
+#    (true/false)
+
+# 6. What does the sudo option '-s' do?
+
+# 7. 'sudo -r' runs a command as a different specified user.
+#    (true/false)
+
+# 8. What usermod flag combination adds a user to a group without removing them from other existing groups?
+
+# 9. The 'Universe' repository component contains Canonical-supported free and open-source software.
+#    (true/false)
+
+# 10. The 'Restricted' repository component contains proprietary drivers for devices.
+#    (true/false)
+
+# 11. Where are the repos and distributions configured in Ubuntu 24.04 LTS?
+
+# 12. 'apt' is the tool best suited for scripting, not apt-get.
+#    (true/false)
+
+# 13. What is the difference in effect between 'apt remove foo' and 'apt purge foo'?
+
+# 14. What apt command installs a specific version of package foo, e.g. version 6.0-28ubuntu4?
+
+# 15. systemd runs as PID 1 when acting as the init system on boot.
+#    (true/false)
+
+# 16. As what symlink is systemd usually installed and started during early boot?
+
+# 17. 'systemctl reload foo' stops and then starts a service.
+#    (true/false)
+
+# 18. What is the difference between 'systemctl enable' and 'systemctl start' for a service?
+
+# 19. What command checks whether the cron service is currently active/running?
+
+# 20. Starting with Ubuntu 24.04 LTS, what activation method does openssh-server use by default?
+
