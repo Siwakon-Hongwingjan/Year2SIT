@@ -1,0 +1,646 @@
+[38;5;208m#[0m[38;5;208m [0m[38;5;208mINT134 System Deployment[0m
+[38;5;208m##[0m[38;5;208m [0m[38;5;208mClass 03 Deploy Static Web[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mLab Instructions[0m
+
+[38;5;231m1[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mIt is best to learn from experiment, read command help, and figure out the solution yourself.[0m
+
+[38;5;231m2[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mDo not search for the answer on internet or use AI.[0m
+
+[38;5;231m3[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mDo not ask or copy answers from your friend.[0m
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mSetup[0m
+
+[38;5;231m1[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mConnect to [0m[38;5;203m`[0m[38;5;203mint134[0m[38;5;203m`[0m[38;5;231m vm with ssh.[0m
+
+[38;5;231m2[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mCreate a directory [0m[38;5;203m`[0m[38;5;203m~/int134/lab03/[0m[38;5;203m`[0m[38;5;231m under your home directory and change working directory to this directory.[0m
+
+[38;5;231m3[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mCopy [0m[38;5;203m`[0m[38;5;203m/home/public/labs/lab03/answers.yaml[0m[38;5;203m`[0m[38;5;231m to [0m[38;5;203m`[0m[38;5;203m~/int134/lab03/answers.yaml[0m[38;5;203m`[0m[38;5;231m.[0m
+
+[38;5;231m4[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mModify [0m[38;5;203m`[0m[38;5;203manswers.yaml[0m[38;5;203m`[0m[38;5;231m: set your student ID and your full name.[0m
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mWhat this VM records about your work[0m
+
+[38;5;231mWhile you work on this lab, your VM notes [0m[1;38;5;203m**[0m[1;38;5;203mhow many minutes you were active[0m[1;38;5;203m**[0m[38;5;231m — nothing[0m
+[38;5;231mmore. A minute counts as active if [0m[1;38;5;203m**[0m[1;38;5;203myour terminal produced output[0m[1;38;5;203m**[0m[38;5;231m in that minute.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mWhat is recorded:[0m[1;38;5;203m**[0m[38;5;231m a count of active minutes, and nothing else.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mWhen:[0m[1;38;5;203m**[0m[38;5;231m during the class session, and afterwards until you have finished the lab or one[0m
+[38;5;231mweek has passed, whichever comes first.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mWhat is [0m[38;5;167m*[0m[38;5;167mnot[0m[38;5;167m*[0m[1;38;5;203m recorded:[0m[1;38;5;203m**[0m[38;5;231m your commands, your keystrokes, your files, your IP address,[0m
+[38;5;231mand anything at all during a minute when nobody is connected.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mEditing over VS Code Remote-SSH does not count.[0m[1;38;5;203m**[0m[38;5;231m VS Code is not recommended for this[0m
+[38;5;231mcourse: its autocomplete frequently supplies the answer, which is not what you are here to[0m
+[38;5;231mpractise. It also opens no terminal of its own, so time spent editing files through it[0m
+[38;5;231mearns no participation credit. Work at a terminal — including a terminal opened inside VS[0m
+[38;5;231mCode, which counts normally.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mWhat it is used for:[0m[1;38;5;203m**[0m[38;5;231m your participation credit — which rewards working in class,[0m
+[38;5;231mwhether or not you finish — and measuring how long this lab really takes, so that future[0m
+[38;5;231mlabs are better sized.[0m
+
+[38;5;231mYou can read exactly what your own VM has recorded at any time:[0m
+
+[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231mcat[0m[38;5;231m /var/lib/int134/activity.log[0m
+[38;5;231mcat[0m[38;5;231m /var/lib/int134/activity.counter[0m
+[38;5;231m```[0m
+
+[1;38;5;203m**[0m[1;38;5;203mThese two files are the record of your participation. Altering them scores zero[0m
+[1;38;5;203mparticipation for this lab.[0m[1;38;5;203m**[0m[38;5;231m Both are checked against each other, so an edit to either one[0m
+[38;5;231mshows up. If you think the record is wrong — and it can be, this is software — [0m[1;38;5;203m**[0m[1;38;5;203mtell me[0m[1;38;5;203m**[0m[38;5;231m.[0m
+[38;5;231mA mistake corrected is nothing; an edited file is academic dishonesty.[0m
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mSubmission[0m
+
+[38;5;231m1[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mAnswer in [0m[38;5;203m`[0m[38;5;203manswers.yaml[0m[38;5;203m`[0m[38;5;231m file. Each answer goes inside a [0m[38;5;203m`[0m[38;5;203m|[0m[38;5;203m`[0m[38;5;231m block, and the[0m
+[38;5;231m   [0m[38;5;231mindentation matters — the answer lines sit two spaces further in than their key:[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141myaml[0m
+[38;5;231m    answers:[0m
+[38;5;231m      T5: |[0m
+[38;5;231m        your answer here[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m2[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mTest your work using [0m[38;5;203m`[0m[38;5;203mint134 check lab03[0m[38;5;203m`[0m[38;5;231m. Run it as often as you like.[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m int134 check lab03[0m
+
+[38;5;231m      [0m[38;5;231mPASS[0m[38;5;231m  nginx is installed[0m
+[38;5;231m      [0m[38;5;231mFAIL[0m[38;5;231m  Your site answers from outside your VM[0m
+[38;5;231m            [0m[38;5;231mhint:[0m[38;5;231m Class 3 step 14, and step 6 here. Reachable from another[0m
+[38;5;231m                  [0m[38;5;231mmachine,[0m[38;5;231m not just from your own.[0m
+[38;5;231m      [0m[38;5;231m...[0m
+
+[38;5;231m      [0m[38;5;231m9[0m[38;5;231m of 23 checks passed[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;231mYou will see how many checks passed, not a score.[0m
+
+[38;5;231m3[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mA step with a question to answer is marked [0m[1;38;5;203m**[0m[1;38;5;203m→ [0m[1;38;5;203m`[0m[1;38;5;203mT<n>[0m[1;38;5;203m`[0m[1;38;5;203m**[0m[38;5;231m, which is the key to fill[0m
+[38;5;231m   [0m[38;5;231min [0m[38;5;203m`[0m[38;5;203manswers.yaml[0m[38;5;203m`[0m[38;5;231m. Steps without a mark still count — most of them are checked on[0m
+[38;5;231m   [0m[38;5;231myour machine instead.[0m
+
+[38;5;231m4[0m[38;5;243m.[0m[38;5;231m [0m[1;38;5;203m**[0m[1;38;5;203mSome of this lab's checks are run from my server, not from your VM.[0m[1;38;5;203m**[0m[38;5;231m They fetch[0m
+[38;5;231m   [0m[38;5;231myour site the way anybody else would. A check that passes on your machine and fails[0m
+[38;5;231m   [0m[38;5;231mfrom mine is not a contradiction — Part 3 is about exactly that difference.[0m
+
+
+[38;5;141m&[0m[38;5;141mnbsp[0m[38;5;141m;[0m
+
+[38;5;208m####[0m[38;5;208m [0m[38;5;208mHow to read this sheet[0m
+
+[38;5;203m`[0m[38;5;203m<...>[0m[38;5;203m`[0m[38;5;231m hides the part you have to work out. Sometimes that is the command:[0m
+
+[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m$[0m[38;5;231m [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m
+[38;5;231mListing...[0m[38;5;231m Done[0m
+[38;5;231m```[0m
+
+[38;5;231mand sometimes it is what the command prints:[0m
+
+[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m$[0m[38;5;231m id[0m
+[38;5;231muid[0m[38;5;203m=[0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;231m gid=[0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m
+[38;5;231m```[0m
+
+[38;5;231mEverything not hidden is there to help you. The sample output shows you [0m[38;5;167m*[0m[38;5;167mwhere to[0m
+[38;5;167mlook[0m[38;5;167m*[0m[38;5;231m and [0m[38;5;167m*[0m[38;5;167mwhat shape the answer takes[0m[38;5;167m*[0m[38;5;231m, so you can tell a working system from a[0m
+[38;5;231mbroken one.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mYou need two windows in this lab.[0m[1;38;5;203m**[0m[38;5;231m One is an ssh session on your VM, as usual. The other[0m
+[38;5;231mis your own computer — a browser, or a terminal on your laptop. The readiness check below[0m
+[38;5;231mand steps 8 and 9 ask what someone [0m[38;5;167m*[0m[38;5;167melse[0m[38;5;167m*[0m[38;5;231m sees, and that question cannot be answered from[0m
+[38;5;231minside the machine.[0m
+
+[38;5;141m&[0m[38;5;141mnbsp[0m[38;5;141m;[0m
+
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mBefore you start - is your machine ready?[0m
+
+[38;5;231mThis lab continues from class 3. [0m[1;38;5;203m**[0m[1;38;5;203mIf you did not finish [0m[1;38;5;203m`[0m[1;38;5;203mlab03class[0m[1;38;5;203m`[0m[1;38;5;203m, do that first[0m[1;38;5;203m**[0m[38;5;231m — it[0m
+[38;5;231mis not marked, it has no deadline, and everything below assumes the machine that sheet[0m
+[38;5;231mleaves you with.[0m
+
+[38;5;231mIf you were in class, this is a two-minute check and not a repeat. Four things have to be[0m
+[38;5;231mtrue before step 1 will work.[0m
+
+[38;5;231m|[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Check it with [0m[38;5;231m|[0m[38;5;231m If it is not true [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m nginx is installed, and it is the build from the repository class 3 added rather than the distribution's [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mnginx -v[0m[38;5;203m`[0m[38;5;231m, [0m[38;5;203m`[0m[38;5;203mapt-cache policy nginx[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mlab03class[0m[38;5;203m`[0m[38;5;231m, part 1 [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m It starts at boot [0m[1;38;5;203m**[0m[1;38;5;203mand[0m[1;38;5;203m**[0m[38;5;231m it is running now [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msystemctl is-enabled nginx[0m[38;5;203m`[0m[38;5;231m, [0m[38;5;203m`[0m[38;5;203msystemctl is-active nginx[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mlab03class[0m[38;5;203m`[0m[38;5;231m, part 2 [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m Something is listening on port 80 [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mss -tln[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mlab03class[0m[38;5;203m`[0m[38;5;231m, part 2 [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m A visitor can reach it — load it from [0m[1;38;5;203m**[0m[1;38;5;203myour own computer[0m[1;38;5;203m**[0m[38;5;231m, not from the VM [0m[38;5;231m|[0m[38;5;231m a browser, or [0m[38;5;203m`[0m[38;5;203mcurl[0m[38;5;203m`[0m[38;5;231m on your laptop [0m[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msudo ufw allow 80/tcp[0m[38;5;203m`[0m[38;5;231m, and [0m[38;5;203m`[0m[38;5;203mlab03class[0m[38;5;203m`[0m[38;5;231m part 3 for why [0m[38;5;231m|[0m
+
+[1;38;5;203m**[0m[1;38;5;203m`[0m[1;38;5;203mint134 check lab03[0m[1;38;5;203m`[0m[1;38;5;203m answers all four for you.[0m[1;38;5;203m**[0m[38;5;231m Run it before you start: six of its[0m
+[38;5;231mmachine checks and one probe from my server are exactly this list, and they are already[0m
+[38;5;231mpassing if you are ready. They are checked again at the end, because a deployment that is[0m
+[38;5;231mnot reachable is not deployed — so nothing here is thrown away, and none of it is asked[0m
+[38;5;231mtwice.[0m
+
+[38;5;167m*[0m[38;5;167mClass 3 is where this was built and explained. This lab does not rebuild it.[0m[38;5;167m*[0m
+
+[38;5;141m&[0m[38;5;141mnbsp[0m[38;5;141m;[0m
+
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mThe lab - Serving your own site[0m
+
+[38;5;167m*[0m[38;5;167mThis is class 3's part 4, and it is the whole of this sheet. Its steps are numbered from[0m
+[38;5;167m1, because there is nothing before them here.[0m[38;5;167m*[0m
+
+[1;38;5;203m**[0m[1;38;5;203mThe misconception this part attacks:[0m[1;38;5;203m**[0m[38;5;231m that a web server serves [0m[38;5;167m*[0m[38;5;167myour[0m[38;5;167m*[0m[38;5;231m files. It serves[0m
+[38;5;231mthe files it has been configured to serve, from a directory it has been told about, and by[0m
+[38;5;231mdefault that is neither yours nor anywhere near your home directory.[0m
+
+[38;5;231mYou are deploying an application you did not write. That is deliberate, and it is the[0m
+[38;5;231mnormal situation: the person who deploys software is usually not the person who wrote it.[0m
+[38;5;231mYou are not expected to read the JavaScript, and nothing in this lab asks you to.[0m
+
+[38;5;231mYou have already written a server block and served a page of your own from it, in class 3.[0m
+[38;5;231mThis does the same thing for a real application — and then makes one machine serve two sites[0m
+[38;5;231mat once, each answering to its own name, with one of them answering for everything else as[0m
+[38;5;231mwell.[0m
+
+[38;5;231m|[0m[38;5;231m Command [0m[38;5;231m|[0m[38;5;231m What it does [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mtar -tzf <file>[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[1;38;5;203m**[0m[1;38;5;203mList[0m[1;38;5;203m**[0m[38;5;231m what is in an archive, unpacking nothing [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mtar -xzf <file> -C <dir>[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Unpack an archive into a directory you name [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203m--strip-components=1[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m …without the archive's own top-level folder [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mchmod 2775 <dir>[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Group-writable, and [0m[1;38;5;203m**[0m[1;38;5;203msetgid[0m[1;38;5;203m**[0m[38;5;231m — new files inherit the group [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mfind <dir> -perm -u+w -exec chmod g+w {} +[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Add group-write wherever the [0m[1;38;5;203m**[0m[1;38;5;203mowner[0m[1;38;5;203m**[0m[38;5;231m can already write [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203maccess_log[0m[38;5;203m`[0m[38;5;231m / [0m[38;5;203m`[0m[38;5;203merror_log[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Where this site records requests, and where it records faults. Under [0m[38;5;203m`[0m[38;5;203m/var/log/nginx/[0m[38;5;203m`[0m[38;5;231m, ending [0m[38;5;203m`[0m[38;5;203m.log[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mrsync -a --chmod=D755,F644 --delete <src>/ <dst>/[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Make [0m[38;5;203m`[0m[38;5;203m<dst>[0m[38;5;203m`[0m[38;5;231m match [0m[38;5;203m`[0m[38;5;203m<src>[0m[38;5;203m`[0m[38;5;231m, at the modes you name [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203m/etc/nginx/conf.d/*.conf[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Server blocks. [0m[1;38;5;203m**[0m[1;38;5;203mOnly [0m[1;38;5;203m`[0m[1;38;5;203m.conf[0m[1;38;5;203m`[0m[1;38;5;203m is read[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msudo mv <file> <file>.disabled[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Take a config file out of service without deleting it [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;231m / [0m[38;5;203m`[0m[38;5;203mindex[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Which directory to serve, and the default file [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mcurl -H 'Host: <name>' <url>[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Ask as though you had typed that name [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msudo nginx -t[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Check the configuration [0m[1;38;5;203m**[0m[1;38;5;203mwithout[0m[1;38;5;203m**[0m[38;5;231m applying it [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msudo systemctl reload nginx[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Re-read the configuration, without dropping connections [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msudo systemctl restart nginx[0m[38;5;203m`[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Stop and start it instead [0m[38;5;231m|[0m
+
+[38;5;231m1[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mThe application is already on your VM: [0m[38;5;203m`[0m[38;5;203m/home/public/labs/lab03/noticeboard.tar.gz[0m[38;5;203m`[0m[38;5;231m. Make[0m
+[38;5;231m    [0m[38;5;231ma home for it — the directory [0m[38;5;203m`[0m[38;5;203m/srv/noticeboard[0m[38;5;203m`[0m[38;5;231m, [0m[1;38;5;203m**[0m[1;38;5;203mowned by you[0m[1;38;5;203m**[0m[38;5;231m, group [0m[38;5;203m`[0m[38;5;203msysadmin[0m[38;5;203m`[0m[38;5;231m, mode[0m
+[38;5;231m    [0m[1;38;5;203m**[0m[1;38;5;203m2775[0m[1;38;5;203m**[0m[38;5;231m — unpack the archive into it, and then make sure the group can write[0m
+[38;5;231m    [0m[1;38;5;203m**[0m[1;38;5;203mwherever you can[0m[1;38;5;203m**[0m[38;5;231m, throughout, and not just to the directory itself.[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mYou need [0m[38;5;203m`[0m[38;5;203msudo[0m[38;5;203m`[0m[38;5;167m to create it, and then it must stop being root's.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mA directory made[0m
+[38;5;167m    with [0m[38;5;203m`[0m[38;5;203msudo[0m[38;5;203m`[0m[38;5;167m belongs to [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;167m, and nothing you run as yourself may write inside it: [0m[38;5;203m`[0m[38;5;203mtar[0m[38;5;203m`[0m
+[38;5;167m    prints [0m[38;5;203m`[0m[38;5;203mCannot open: Permission denied[0m[38;5;203m`[0m[38;5;167m for every file in the archive and leaves you with[0m
+[38;5;167m    an empty directory. Set the owner as well as the group, and unpack [0m[1;38;5;203m**[0m[1;38;5;203mwithout[0m[1;38;5;203m**[0m[38;5;167m [0m[38;5;203m`[0m[38;5;203msudo[0m[38;5;203m`[0m[38;5;167m, so[0m
+[38;5;167m    that every file of the deployment is yours to edit afterwards.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[1;38;5;203mYou have not used [0m[1;38;5;203m`[0m[1;38;5;203mtar[0m[1;38;5;203m`[0m[1;38;5;203m before, so read this part before you type anything.[0m[1;38;5;203m**[0m[38;5;231m An[0m
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167marchive[0m[38;5;167m*[0m[38;5;231m is one file holding many. [0m[38;5;203m`[0m[38;5;203m.tar[0m[38;5;203m`[0m[38;5;231m is the bundle, [0m[38;5;203m`[0m[38;5;203m.gz[0m[38;5;203m`[0m[38;5;231m is the compression, and[0m
+[38;5;231m    [0m[38;5;203m`[0m[38;5;203m.tar.gz[0m[38;5;203m`[0m[38;5;231m is both at once — one command deals with the pair:[0m
+
+[38;5;231m    [0m[38;5;231m| Option | What it does |[0m
+[38;5;231m    [0m[38;5;231m| :--- | :--- |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-x[0m[38;5;203m`[0m[38;5;231m | e[0m[1;38;5;203m**[0m[1;38;5;203mx[0m[1;38;5;203m**[0m[38;5;231mtract. [0m[38;5;203m`[0m[38;5;203m-c[0m[38;5;203m`[0m[38;5;231m would [0m[1;38;5;203m**[0m[1;38;5;203mc[0m[1;38;5;203m**[0m[38;5;231mreate one instead |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-t[0m[38;5;203m`[0m[38;5;231m | lis[0m[1;38;5;203m**[0m[1;38;5;203mt[0m[1;38;5;203m**[0m[38;5;231m what is inside, without unpacking anything |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-z[0m[38;5;203m`[0m[38;5;231m | the archive is gzip-compressed — the [0m[38;5;203m`[0m[38;5;203m.gz[0m[38;5;203m`[0m[38;5;231m half of [0m[38;5;203m`[0m[38;5;203m.tar.gz[0m[38;5;203m`[0m[38;5;231m |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-f <file>[0m[38;5;203m`[0m[38;5;231m | read this [0m[1;38;5;203m**[0m[1;38;5;203mf[0m[1;38;5;203m**[0m[38;5;231mile. Put it last of the letters: the filename comes straight after it |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-C <dir>[0m[38;5;203m`[0m[38;5;231m | [0m[1;38;5;203m**[0m[1;38;5;203mc[0m[1;38;5;203m**[0m[38;5;231mhange into this directory first, so the files land there and not wherever you happen to be standing |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-v[0m[38;5;203m`[0m[38;5;231m | print each file as it goes |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m--strip-components=1[0m[38;5;203m`[0m[38;5;231m | drop the archive's own top-level folder as it unpacks |[0m
+
+[38;5;231m    [0m[38;5;231mAnd two options of [0m[38;5;203m`[0m[38;5;203mfind[0m[38;5;203m`[0m[38;5;231m, for the permissions afterwards:[0m
+
+[38;5;231m    [0m[38;5;231m| Option | What it does |[0m
+[38;5;231m    [0m[38;5;231m| :--- | :--- |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-perm -u+w[0m[38;5;203m`[0m[38;5;231m | only entries whose [0m[1;38;5;203m**[0m[1;38;5;203mowner[0m[1;38;5;203m**[0m[38;5;231m may write. The leading [0m[38;5;203m`[0m[38;5;203m-[0m[38;5;203m`[0m[38;5;231m means "at least these bits", not "exactly" |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m-exec <cmd> {} +[0m[38;5;203m`[0m[38;5;231m | run a command on what was found. [0m[38;5;203m`[0m[38;5;203m{}[0m[38;5;203m`[0m[38;5;231m is the list, and [0m[38;5;203m`[0m[38;5;203m+[0m[38;5;203m`[0m[38;5;231m hands it over in as few runs as possible |[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mLook before you unpack.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mAn archive can put its files anywhere it likes, including[0m
+[38;5;167m    straight into your current directory, and there is no undo. [0m[38;5;203m`[0m[38;5;203m-t[0m[38;5;203m`[0m[38;5;167m costs you a second:[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m tar[0m[38;5;208m -[0m[38;5;208mtzf[0m[38;5;231m /home/public/labs/lab03/noticeboard.tar.gz[0m[38;5;231m [0m[38;5;203m|[0m[38;5;231m [0m[38;5;231mhead[0m[38;5;208m -[0m[38;5;208m4[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;231m/[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;231m/README.md[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;231m/backend/[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;231m/frontend/[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;231mEverything sits under [0m[1;38;5;203m**[0m[1;38;5;203mone top-level folder[0m[1;38;5;203m**[0m[38;5;231m. Unpack that as it stands into[0m
+[38;5;231m    [0m[38;5;203m`[0m[38;5;203m/srv/noticeboard[0m[38;5;203m`[0m[38;5;231m and you get [0m[38;5;203m`[0m[38;5;203m/srv/noticeboard/<...>/backend[0m[38;5;203m`[0m[38;5;231m, a folder deeper than you[0m
+[38;5;231m    [0m[38;5;231mwant — which is what [0m[38;5;203m`[0m[38;5;203m--strip-components=1[0m[38;5;203m`[0m[38;5;231m is for: it throws away the first path segment[0m
+[38;5;231m    [0m[38;5;231mof every entry as it writes them.[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m ls[0m[38;5;208m -[0m[38;5;208mld[0m[38;5;231m /srv/noticeboard[0m
+[38;5;231m    [0m[38;5;231mdrwxrwsr-x[0m[38;5;231m 2 sysadmin sysadmin 4096 Aug 20 14:22 /srv/noticeboard[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m tar[0m[38;5;208m -[0m[38;5;208mxzf[0m[38;5;231m [0m[38;5;203m<[0m[38;5;231mthe archive[0m[38;5;203m>[0m[38;5;231m [0m[38;5;231m-[0m[38;5;231mC [0m[38;5;203m<[0m[38;5;231mwhere it goes[0m[38;5;203m>[0m[38;5;231m [0m[38;5;231m-[0m[38;5;231m-strip-components=1[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m ls[0m[38;5;208m -[0m[38;5;208ml[0m[38;5;231m /srv/noticeboard[0m
+[38;5;231m    [0m[38;5;231mtotal[0m[38;5;231m 12[0m
+[38;5;231m    [0m[38;5;231mdrwxr-sr-x[0m[38;5;231m 3 sysadmin sysadmin 4096 Aug 16 22:26 backend[0m
+[38;5;231m    [0m[38;5;231mdrwxr-sr-x[0m[38;5;231m 3 sysadmin sysadmin 4096 Aug 16 22:16 frontend[0m
+[38;5;231m    [0m[38;5;231m-rw-r--r--[0m[38;5;231m 1 sysadmin sysadmin 1556 Aug 19 23:22 README.md[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m find /srv/noticeboard[0m[38;5;208m -[0m[38;5;208mperm[0m[38;5;208m -[0m[38;5;208mu[0m[38;5;231m+w[0m[38;5;208m -[0m[38;5;208mexec[0m[38;5;231m chmod g+w [0m[38;5;231m{[0m[38;5;231m}[0m[38;5;231m +[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m ls[0m[38;5;208m -[0m[38;5;208ml[0m[38;5;231m /srv/noticeboard[0m
+[38;5;231m    [0m[38;5;231mtotal[0m[38;5;231m 12[0m
+[38;5;231m    [0m[38;5;231mdrwxrwsr-x[0m[38;5;231m 3 sysadmin sysadmin 4096 Aug 16 22:26 backend[0m
+[38;5;231m    [0m[38;5;231mdrwxrwsr-x[0m[38;5;231m 3 sysadmin sysadmin 4096 Aug 16 22:16 frontend[0m
+[38;5;231m    [0m[38;5;231m-rw-rw-r--[0m[38;5;231m 1 sysadmin sysadmin 1556 Aug 19 23:22 README.md[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mOwner and mode first, then unpack — that is why [0m[38;5;203m`[0m[38;5;203mls -ld[0m[38;5;203m`[0m[38;5;167m comes before [0m[38;5;203m`[0m[38;5;203mtar[0m[38;5;203m`[0m[38;5;167m and not[0m
+[38;5;167m    after.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mAnd no [0m[38;5;203m`[0m[38;5;203msudo[0m[38;5;203m`[0m[38;5;167m on the [0m[38;5;203m`[0m[38;5;203mfind[0m[38;5;203m`[0m[38;5;167m: everything you just unpacked is yours, because[0m
+[38;5;167m    the directory was yours before the archive went into it.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203m2775[0m[38;5;203m`[0m[38;5;167m, and the [0m[38;5;203m`[0m[38;5;203m2[0m[38;5;203m`[0m[38;5;167m is the part that matters.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mIt is the setgid bit: every file[0m
+[38;5;167m    created inside inherits the directory's group instead of the creator's own. That is how[0m
+[38;5;167m    more than one person works on one deployment — they share a group, and nobody has to be[0m
+[38;5;167m    inside anybody's home directory.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mLook at what [0m[38;5;203m`[0m[38;5;203mtar[0m[38;5;203m`[0m[38;5;167m actually produced, though: [0m[38;5;203m`[0m[38;5;203mdrwxr-sr-x[0m[38;5;203m`[0m[38;5;167m.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mThe [0m[38;5;203m`[0m[38;5;203ms[0m[38;5;203m`[0m[38;5;167m came down from[0m
+[38;5;167m    the parent, so the group is right — but there is no [0m[38;5;203m`[0m[38;5;203mw[0m[38;5;203m`[0m[38;5;167m in it. [0m[1;38;5;203m**[0m[1;38;5;203msetgid hands down the[0m
+[1;38;5;203m    group, never the permission[0m[1;38;5;203m**[0m[38;5;167m, and the modes inside an archive are whatever the person[0m
+[38;5;167m    who built it had. So a colleague in your group could walk into [0m[38;5;203m`[0m[38;5;203mfrontend/[0m[38;5;203m`[0m[38;5;167m and still not[0m
+[38;5;167m    create a single file there. The [0m[38;5;203m`[0m[38;5;203mfind[0m[38;5;203m`[0m[38;5;167m is what finishes the job the [0m[38;5;203m`[0m[38;5;203m2[0m[38;5;203m`[0m[38;5;167m started, and[0m
+[38;5;167m    walking the tree is why it reaches inside.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mWhy [0m[38;5;203m`[0m[38;5;203mfind[0m[38;5;203m`[0m[38;5;167m and not [0m[38;5;203m`[0m[38;5;203mchmod -R g+w[0m[38;5;203m`[0m[38;5;167m?[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mBecause [0m[38;5;203m`[0m[38;5;203m-R[0m[38;5;203m`[0m[38;5;167m grants it to [0m[1;38;5;203m**[0m[1;38;5;203meverything[0m[1;38;5;203m**[0m[38;5;167m,[0m
+[38;5;167m    including a file whose owner deliberately made it read-only. The rule you want is[0m
+[38;5;167m    narrower — [0m[1;38;5;203m**[0m[1;38;5;203mthe group may write wherever the owner may, and nowhere else[0m[1;38;5;203m**[0m[38;5;167m — and[0m
+[38;5;167m    [0m[38;5;203m`[0m[38;5;203m-perm -u+w[0m[38;5;203m`[0m[38;5;167m is that rule written down. Tonight the two happen to agree, since every[0m
+[38;5;167m    file in the archive is one you can write. From class 6 they stop agreeing: this[0m
+[38;5;167m    directory becomes a repository, and git stores its objects read-only on purpose.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mA deployment does not belong in [0m[38;5;203m`[0m[38;5;203m/home/you/[0m[38;5;203m`[0m[38;5;167m.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mLook at your own home with[0m
+[38;5;167m    [0m[38;5;203m`[0m[38;5;203mls -ld ~[0m[38;5;203m`[0m[38;5;167m: it is [0m[38;5;203m`[0m[38;5;203mdrwxr-x---[0m[38;5;203m`[0m[38;5;167m, so nobody else can even enter it. A service run from[0m
+[38;5;167m    inside it would have one person's name written into its unit file, and would break the[0m
+[38;5;167m    day that account went away. [0m[38;5;203m`[0m[38;5;203m/srv[0m[38;5;203m`[0m[38;5;167m is the system's own answer — the standard describes it[0m
+[38;5;167m    as "site-specific data served by this machine", which is exactly what this is.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mbackend/[0m[38;5;203m`[0m[38;5;167m is next week's; leave it alone. From class 6 this directory becomes a[0m
+[38;5;167m    repository of your own, and by class 10 it is what deploys itself — so whatever you put[0m
+[38;5;167m    in here from now on, you are going to keep.[0m[38;5;167m*[0m
+
+[38;5;231m2[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mMake the directory the site will be served from, [0m[38;5;203m`[0m[38;5;203m/var/www/noticeboard[0m[38;5;203m`[0m[38;5;231m, and deploy[0m
+[38;5;231m    [0m[38;5;231mthe frontend into it — at the permissions a published directory should have, rather[0m
+[38;5;231m    [0m[38;5;231mthan whichever ones the source happens to carry:[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m sudo rsync[0m[38;5;208m -[0m[38;5;208ma[0m[38;5;208m --[0m[38;5;208mchmod[0m[38;5;203m=[0m[38;5;231mD755,F644[0m[38;5;208m --[0m[38;5;208mdelete[0m[38;5;208m --[0m[38;5;208mexclude[0m[38;5;231m config.js [0m[38;5;231m\[0m
+[38;5;231m        /srv/noticeboard/frontend/ /var/www/noticeboard/[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m ls[0m[38;5;208m -[0m[38;5;208ml[0m[38;5;231m /var/www/noticeboard[0m
+[38;5;231m    [0m[38;5;231mtotal[0m[38;5;231m 24[0m
+[38;5;231m    [0m[38;5;231m-rw-r--r--[0m[38;5;231m 1 sysadmin sysadmin 3284 Aug 16 22:16 app.js[0m
+[38;5;231m    [0m[38;5;231m-rw-r--r--[0m[38;5;231m 1 sysadmin sysadmin  726 Aug 16 22:15 config.example.js[0m
+[38;5;231m    [0m[38;5;231mdrwxr-xr-x[0m[38;5;231m 2 sysadmin sysadmin 4096 Aug 16 22:16 data[0m
+[38;5;231m    [0m[38;5;231m-rw-r--r--[0m[38;5;231m 1 sysadmin sysadmin 1365 Aug 16 22:15 index.html[0m
+[38;5;231m    [0m[38;5;231m-rw-r--r--[0m[38;5;231m 1 sysadmin sysadmin 1990 Aug 16 22:15 store.js[0m
+[38;5;231m    [0m[38;5;231m-rw-r--r--[0m[38;5;231m 1 sysadmin sysadmin 2059 Aug 16 22:16 style.css[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mls -l[0m[38;5;203m`[0m[38;5;167m, not [0m[38;5;203m`[0m[38;5;203mls[0m[38;5;203m`[0m[38;5;167m, and compare it with the listing in step 1.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mThere is [0m[1;38;5;203m**[0m[1;38;5;203mno [0m[1;38;5;203m`[0m[1;38;5;203mw[0m[1;38;5;203m`[0m[1;38;5;203m in[0m
+[1;38;5;203m    the group column[0m[1;38;5;203m**[0m[38;5;167m here — [0m[38;5;203m`[0m[38;5;203m-rw-r--r--[0m[38;5;203m`[0m[38;5;167m and [0m[38;5;203m`[0m[38;5;203mdrwxr-xr-x[0m[38;5;203m`[0m[38;5;167m, where the source directory you[0m
+[38;5;167m    just built has [0m[38;5;203m`[0m[38;5;203m-rw-rw-r--[0m[38;5;203m`[0m[38;5;167m and [0m[38;5;203m`[0m[38;5;203mdrwxrwsr-x[0m[38;5;203m`[0m[38;5;167m. Same files, two directories, two different[0m
+[38;5;167m    answers, and the difference is on the screen rather than in a paragraph.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mTwo directories, and the difference between them is the point.[0m[38;5;167m*[0m[1;38;5;203m**[0m
+[38;5;231m    [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203m/srv/noticeboard[0m[38;5;203m`[0m[38;5;167m is your [0m[1;38;5;203m**[0m[1;38;5;203msource directory[0m[1;38;5;203m**[0m[38;5;167m — everything the application arrived[0m
+[38;5;167m    with, [0m[38;5;203m`[0m[38;5;203mbackend/[0m[38;5;203m`[0m[38;5;167m and [0m[38;5;203m`[0m[38;5;203mREADME.md[0m[38;5;203m`[0m[38;5;167m included. [0m[38;5;203m`[0m[38;5;203m/var/www/noticeboard[0m[38;5;203m`[0m[38;5;167m is what the world is[0m
+[38;5;167m    handed. [0m[1;38;5;203m**[0m[1;38;5;203mNever point a web server at your source directory:[0m[1;38;5;203m**[0m[38;5;167m it holds files a visitor[0m
+[38;5;167m    has no business reading, and a web server hands out whatever is under its root without[0m
+[38;5;167m    asking what it is. From class 6 there is a [0m[38;5;203m`[0m[38;5;203m.git[0m[38;5;203m`[0m[38;5;167m in here as well, and [0m[38;5;203m`[0m[38;5;203m/.git/config[0m[38;5;203m`[0m[38;5;167m is[0m
+[38;5;167m    one of the most-requested paths on the internet — but the rule is already true tonight,[0m
+[38;5;167m    before there is any history to give away.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mrsync[0m[38;5;203m`[0m[38;5;167m rather than [0m[38;5;203m`[0m[38;5;203mcp[0m[38;5;203m`[0m[38;5;167m, because you will run this again every time you change the[0m
+[38;5;167m    site. [0m[38;5;203m`[0m[38;5;203m-a[0m[38;5;203m`[0m[38;5;167m preserves permissions; the trailing slash on [0m[38;5;203m`[0m[38;5;203mfrontend/[0m[38;5;203m`[0m[38;5;167m means its[0m
+[38;5;167m    [0m[1;38;5;203m**[0m[1;38;5;203mcontents[0m[1;38;5;203m**[0m[38;5;167m, [0m[38;5;203m`[0m[38;5;203mdata/[0m[38;5;203m`[0m[38;5;167m included, rather than the directory itself; [0m[38;5;203m`[0m[38;5;203m--delete[0m[38;5;203m`[0m[38;5;167m removes[0m
+[38;5;167m    anything from the document root that you have removed from the source, which is what[0m
+[38;5;167m    makes it a [0m[1;38;5;203m**[0m[1;38;5;203msync[0m[1;38;5;203m**[0m[38;5;167m and not a pile; and [0m[38;5;203m`[0m[38;5;203m--exclude config.js[0m[38;5;203m`[0m[38;5;167m protects the one file that[0m
+[38;5;167m    the application did not arrive with — the next step creates it.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203m--chmod=D755,F644[0m[38;5;203m`[0m[38;5;167m is the other half of the [0m[38;5;203m`[0m[38;5;203mfind[0m[38;5;203m`[0m[38;5;167m you ran in step 1, and it points[0m
+[38;5;167m    the opposite way.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203m-a[0m[38;5;203m`[0m[38;5;167m preserves permissions — which means that [0m[1;38;5;203m**[0m[1;38;5;203mwithout this flag,[0m
+[1;38;5;203m    the modes of your source directory become the modes of what the world is handed.[0m[1;38;5;203m**[0m[38;5;167m You[0m
+[38;5;167m    just made the source group-writable so that a team can work on it. The copy must not be:[0m
+[38;5;167m    it is published, and a document root should be readable by the web server and writable by[0m
+[38;5;167m    nobody it could be. [0m[38;5;203m`[0m[38;5;203mD755,F644[0m[38;5;203m`[0m[38;5;167m says directories and files plainly, and it is on the[0m
+[38;5;167m    deploy line rather than in a [0m[38;5;203m`[0m[38;5;203mchmod[0m[38;5;203m`[0m[38;5;167m afterwards so that [0m[1;38;5;203m**[0m[1;38;5;203mevery future deploy reasserts[0m
+[1;38;5;203m    it[0m[1;38;5;203m**[0m[38;5;167m — including the one GitHub Actions runs for you in class 10, where there is nobody[0m
+[38;5;167m    to remember a second command.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mTwo directories, two rules, and each follows from what the directory is [0m[1;38;5;203m**[0m[1;38;5;203mfor[0m[1;38;5;203m**[0m[38;5;167m: the[0m
+[38;5;167m    source is opened up because people work on it, the copy is closed down because it is[0m
+[38;5;167m    given away.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mType it once now and you will type it again in classes 5 and 9. In class 10, GitHub[0m
+[38;5;167m    Actions runs this line for you on every push. That is most of what a deploy job is.[0m[38;5;167m*[0m
+
+[38;5;231m3[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mThe application does not know whose deployment it is. In the document root, make a[0m
+[38;5;231m    [0m[38;5;203m`[0m[38;5;203mconfig.js[0m[38;5;203m`[0m[38;5;231m from the [0m[38;5;203m`[0m[38;5;203mconfig.example.js[0m[38;5;203m`[0m[38;5;231m beside it, and put your own 11-digit student[0m
+[38;5;231m    [0m[38;5;231mnumber in [0m[38;5;203m`[0m[38;5;203mstudentId[0m[38;5;203m`[0m[38;5;231m.[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m grep studentId /var/www/noticeboard/config.js[0m
+[38;5;231m      [0m[38;5;231mstudentId:[0m[38;5;231m [0m[38;5;231m"[0m[38;5;186m<...>[0m[38;5;231m"[0m[38;5;231m,[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mconfig.js[0m[38;5;203m`[0m[38;5;167m did not come with the application, on purpose: it is different on every[0m
+[38;5;167m    machine, which is what configuration means. [0m[38;5;203m`[0m[38;5;203mconfig.example.js[0m[38;5;203m`[0m[38;5;167m ships beside it so you[0m
+[38;5;167m    know what to write. You will meet this pattern again in class 4, with a database password in it,[0m
+[38;5;167m    and in class 8 it becomes an environment variable.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mLeave [0m[38;5;203m`[0m[38;5;203mnoticesUrl[0m[38;5;203m`[0m[38;5;167m exactly as it is. It changes in class 5, and not before.[0m[38;5;167m*[0m
+
+[38;5;231m4[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mWrite the server block that serves it, as [0m[38;5;203m`[0m[38;5;203m/etc/nginx/conf.d/noticeboard.conf[0m[38;5;203m`[0m[38;5;231m. This[0m
+[38;5;231m    [0m[38;5;231mis the shape. You supply the values.[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mnginx[0m
+[38;5;231m    server {[0m
+[38;5;231m        listen      <...>;[0m
+[38;5;231m        server_name <...>;[0m
+
+[38;5;231m        access_log  <...>;[0m
+[38;5;231m        error_log   <...>;[0m
+
+[38;5;231m        root  <...>;[0m
+[38;5;231m        index <...>;[0m
+
+[38;5;231m        location / { try_files $uri $uri/ =404; }[0m
+[38;5;231m    }[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mYou are not writing this from nothing.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203m/etc/nginx/conf.d/[0m[38;5;203m`[0m[38;5;167m already holds a[0m
+[38;5;167m    working server block that came with the package. Open it, read it, and use it as your[0m
+[38;5;167m    model — adapting somebody else's configuration is most of what this job actually is,[0m
+[38;5;167m    and it is what you will be doing in the exam.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;243m-[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;167m is the directory it serves; [0m[38;5;203m`[0m[38;5;203mindex[0m[38;5;203m`[0m[38;5;167m is what to send when somebody asks for a[0m
+[38;5;167m      directory rather than a file.[0m[38;5;167m*[0m
+[38;5;231m    [0m[38;5;243m-[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mserver_name[0m[38;5;203m`[0m[38;5;167m decides which [0m[38;5;203m`[0m[38;5;203mHost[0m[38;5;203m`[0m[38;5;167m values this block [0m[1;38;5;203m**[0m[1;38;5;203mclaims[0m[1;38;5;203m**[0m[38;5;167m, and step 5 is the[0m
+[38;5;167m      specification: your VM answers to more than one name, and this block must claim the[0m
+[38;5;167m      ones that are yours. Read the table before you fill this in.[0m[38;5;167m*[0m
+[38;5;231m    [0m[38;5;243m-[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mtry_files[0m[38;5;203m`[0m[38;5;167m says: the file if it exists, then the directory index, and otherwise say[0m
+[38;5;167m      plainly that there is nothing there.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203maccess_log[0m[38;5;203m`[0m[38;5;167m and [0m[38;5;203m`[0m[38;5;203merror_log[0m[38;5;203m`[0m[38;5;167m give this site a record of its own.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mLook in[0m
+[38;5;167m    [0m[38;5;203m`[0m[38;5;203m/etc/nginx/nginx.conf[0m[38;5;203m`[0m[38;5;167m and you will find both already set, near the top and inside[0m
+[38;5;167m    [0m[38;5;203m`[0m[38;5;203mhttp[0m[38;5;203m`[0m[38;5;167m — one pair of files that [0m[1;38;5;203m**[0m[1;38;5;203mevery[0m[1;38;5;203m**[0m[38;5;167m site on the machine writes to together. Naming[0m
+[38;5;167m    them again inside your [0m[38;5;203m`[0m[38;5;203mserver[0m[38;5;203m`[0m[38;5;167m block takes them over for your site alone, which is what[0m
+[38;5;167m    you want the first time two sites disagree about what happened.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;243m-[0m[38;5;231m [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mName them [0m[38;5;203m`[0m[38;5;203mnoticeboard.access.log[0m[38;5;203m`[0m[38;5;167m and [0m[38;5;203m`[0m[38;5;203mnoticeboard.error.log[0m[38;5;203m`[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m — [0m[38;5;167m*[0m[38;5;167mthe site first,[0m
+[38;5;167m      then what the file is for, so a machine hosting a dozen sites lists them in pairs. You[0m
+[38;5;167m      are not inventing that: the block that came with the package names its own log on[0m
+[38;5;167m      exactly that pattern. Its line is commented out — the [0m[38;5;203m`[0m[38;5;203m#[0m[38;5;203m`[0m[38;5;167m at the start — so it is a[0m
+[38;5;167m      model to copy, not a setting that is in force. [0m[38;5;203m`[0m[38;5;203merror_log[0m[38;5;203m`[0m[38;5;167m is not in that file at all;[0m
+[38;5;167m      that one you can only take from [0m[38;5;203m`[0m[38;5;203mnginx.conf[0m[38;5;203m`[0m[38;5;167m.[0m[38;5;167m*[0m
+[38;5;231m    [0m[38;5;243m-[0m[38;5;231m [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mDirectly in [0m[38;5;203m`[0m[38;5;203m/var/log/nginx/[0m[38;5;203m`[0m[38;5;167m, and ending in [0m[38;5;203m`[0m[38;5;203m.log[0m[38;5;203m`[0m[38;5;167m.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mNot a tidiness rule.[0m
+[38;5;167m      [0m[38;5;203m`[0m[38;5;203m/etc/logrotate.d/nginx[0m[38;5;203m`[0m[38;5;167m is set to rotate [0m[38;5;203m`[0m[38;5;203m/var/log/nginx/*.log[0m[38;5;203m`[0m[38;5;167m — that pattern does not[0m
+[38;5;167m      look inside subdirectories, and it does not match a file called anything else. [0m[1;38;5;203m**[0m[1;38;5;203mA log[0m
+[1;38;5;203m      nothing rotates grows until it fills the disk[0m[1;38;5;203m**[0m[38;5;167m, and a full disk takes down every service[0m
+[38;5;167m      on the machine, not just this one.[0m[38;5;167m*[0m
+[38;5;231m    [0m[38;5;243m-[0m[38;5;231m [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mThey do not take the same second argument.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203maccess_log[0m[38;5;203m`[0m[38;5;167m takes a [0m[1;38;5;203m**[0m[1;38;5;203mformat[0m[1;38;5;203m**[0m[38;5;167m —[0m
+[38;5;167m      [0m[38;5;203m`[0m[38;5;203mmain[0m[38;5;203m`[0m[38;5;167m is defined in [0m[38;5;203m`[0m[38;5;203mnginx.conf[0m[38;5;203m`[0m[38;5;167m, go and read it. [0m[38;5;203m`[0m[38;5;203merror_log[0m[38;5;203m`[0m[38;5;167m takes a [0m[1;38;5;203m**[0m[1;38;5;203mlevel[0m[1;38;5;203m**[0m[38;5;167m, like[0m
+[38;5;167m      [0m[38;5;203m`[0m[38;5;203mwarn[0m[38;5;203m`[0m[38;5;167m or [0m[38;5;203m`[0m[38;5;203mnotice[0m[38;5;203m`[0m[38;5;167m: how bad a thing has to be before it is written down. Swapping them[0m
+[38;5;167m      is the usual first mistake, and [0m[38;5;203m`[0m[38;5;203mnginx -t[0m[38;5;203m`[0m[38;5;167m will tell you so.[0m[38;5;167m*[0m
+
+[38;5;231m5[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mLook at what else is in that directory. [0m[1;38;5;203m**[0m[1;38;5;203mEvery file ending in [0m[1;38;5;203m`[0m[1;38;5;203m.conf[0m[1;38;5;203m`[0m[1;38;5;203m is being read[0m[1;38;5;203m**[0m[38;5;231m,[0m
+[38;5;231m    [0m[38;5;231mand two of them already claim port 80: the example that came with the package, and the[0m
+[38;5;231m    [0m[38;5;231mclass site you built in class 3. Which one came with the package? [0m[1;38;5;203m**[0m[1;38;5;203m→ [0m[1;38;5;203m`[0m[1;38;5;203mT5[0m[1;38;5;203m`[0m[1;38;5;203m**[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m ls /etc/nginx/conf.d/[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;231m  noticeboard.conf  [0m[38;5;231msite.conf[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;231mYour machine now has to serve two sites and still answer for everything else, and this is[0m
+[38;5;231m    [0m[38;5;231mthe end state it must reach:[0m
+
+[38;5;231m    [0m[38;5;231m| A visitor sends [0m[38;5;203m`[0m[38;5;203mHost:[0m[38;5;203m`[0m[38;5;231m | The block that must answer |[0m
+[38;5;231m    [0m[38;5;231m| :--- | :--- |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m<your VM>.sit.kmutt.ac.th[0m[38;5;203m`[0m[38;5;231m | your [0m[38;5;203m`[0m[38;5;203mnoticeboard.conf[0m[38;5;203m`[0m[38;5;231m |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203m<your VM>[0m[38;5;203m`[0m[38;5;231m | your [0m[38;5;203m`[0m[38;5;203mnoticeboard.conf[0m[38;5;203m`[0m[38;5;231m — [0m[1;38;5;203m**[0m[1;38;5;203mthe same block[0m[1;38;5;203m**[0m[38;5;231m |[0m
+[38;5;231m    [0m[38;5;231m| [0m[38;5;203m`[0m[38;5;203mclass.int134[0m[38;5;203m`[0m[38;5;231m | your class 3 [0m[38;5;203m`[0m[38;5;203msite.conf[0m[38;5;203m`[0m[38;5;231m |[0m
+[38;5;231m    [0m[38;5;231m| [0m[1;38;5;203m**[0m[1;38;5;203many other name at all[0m[1;38;5;203m**[0m[38;5;231m | your [0m[38;5;203m`[0m[38;5;203mnoticeboard.conf[0m[38;5;203m`[0m[38;5;231m |[0m
+
+[38;5;231m    [0m[38;5;231mThe example that came with the package is not in that table, so [0m[1;38;5;203m**[0m[1;38;5;203mtake it out of service[0m[1;38;5;203m**[0m[38;5;231m:[0m
+[38;5;231m    [0m[38;5;231mrename it so that it no longer ends in [0m[38;5;203m`[0m[38;5;203m.conf[0m[38;5;203m`[0m[38;5;231m, and nginx stops reading it. [0m[1;38;5;203m**[0m[1;38;5;203mRename it —[0m
+[1;38;5;203m    do not delete it.[0m[1;38;5;203m**[0m[38;5;231m It is the worked example you wrote your own block from, it belongs to[0m
+[38;5;231m    [0m[38;5;231mthe package rather than to you, and you will want to read it again.[0m
+
+[38;5;231m    [0m[38;5;231mNothing you have written is in effect until nginx re-reads it, and that is step 6. Do that[0m
+[38;5;231m    [0m[38;5;231mfirst, then come back here and check every row. [0m[38;5;203m`[0m[38;5;203mcurl[0m[38;5;203m`[0m[38;5;231m will send any [0m[38;5;203m`[0m[38;5;203mHost[0m[38;5;203m`[0m[38;5;231m you tell it to,[0m
+[38;5;231m    [0m[38;5;231mwhich is how you test a name without owning it:[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m curl[0m[38;5;208m -[0m[38;5;208ms[0m[38;5;208m -[0m[38;5;208mH[0m[38;5;231m [0m[38;5;231m'[0m[38;5;186mHost: class.int134[0m[38;5;231m'[0m[38;5;231m http://127.0.0.1/[0m[38;5;231m [0m[38;5;203m|[0m[38;5;231m [0m[38;5;231mgrep[0m[38;5;208m -[0m[38;5;208mi[0m[38;5;231m [0m[38;5;231m'[0m[38;5;186m<h1>[0m[38;5;231m'[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231mh1[0m[38;5;203m>[0m[38;5;231mINT134 [0m[38;5;231mclass[0m[38;5;231m site — [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m[38;5;203m<[0m[38;5;231m/h1[0m[38;5;203m>[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m curl[0m[38;5;208m -[0m[38;5;208ms[0m[38;5;208m -[0m[38;5;208mH[0m[38;5;231m [0m[38;5;231m'[0m[38;5;186mHost: nobody.claims.this[0m[38;5;231m'[0m[38;5;231m http://127.0.0.1/[0m[38;5;231m [0m[38;5;203m|[0m[38;5;231m [0m[38;5;231mgrep[0m[38;5;208m -[0m[38;5;208mi[0m[38;5;231m [0m[38;5;231m'[0m[38;5;186m<h1>[0m[38;5;231m'[0m
+[38;5;231m    [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mTwo rows point at one block, and that is the hint.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mOne block can claim more than one[0m
+[38;5;167m    name. Write both of them out — do not reach for a wildcard, because [0m[38;5;203m`[0m[38;5;203m*.sit.kmutt.ac.th[0m[38;5;203m`[0m
+[38;5;167m    would claim your classmates' machines as well as yours. [0m[38;5;203m`[0m[38;5;203mnginx -t[0m[38;5;203m`[0m[38;5;167m tells you at once if you[0m
+[38;5;167m    have written it in a form nginx does not accept.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mThe last row is the work.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mA name that no block claims goes to the [0m[1;38;5;203m**[0m[1;38;5;203mdefault server[0m[1;38;5;203m**[0m
+[38;5;167m    for that port, and class 3 showed you two different ways for a block to be it. Either will[0m
+[38;5;167m    do. What will not do is two blocks claiming it at once — nginx calls that an error and[0m
+[38;5;167m    refuses to load, so something has to give way first.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mThis does not undo what you did in class.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203msite.conf[0m[38;5;203m`[0m[38;5;167m took the default because it was[0m
+[38;5;167m    the only site on the machine. It is not any more. Handing the default to your real[0m
+[38;5;167m    deployment is the ordinary next step, not a correction.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mRow 3 still works, and it is worth understanding why.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mclass.int134[0m[38;5;203m`[0m[38;5;167m reaches the block[0m
+[38;5;167m    that claims it [0m[1;38;5;203m**[0m[1;38;5;203mby name[0m[1;38;5;203m**[0m[38;5;167m, even though another block is now the default. Matching happens[0m
+[38;5;167m    first; the default is only the fallback.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mThe checker tests the last row with a name invented while it runs[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m, [0m[38;5;167m*[0m[38;5;167mdifferent every[0m
+[38;5;167m    time, so there is nothing to add to [0m[38;5;203m`[0m[38;5;203mserver_name[0m[38;5;203m`[0m[38;5;167m. Make your block the default and it passes[0m
+[38;5;167m    for every name at once — which is the whole point of having a default.[0m[38;5;167m*[0m
+
+[38;5;231m6[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mCheck the configuration, then make nginx re-read it without dropping connections.[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m
+[38;5;231m    [0m[38;5;231mnginx:[0m[38;5;231m the configuration file /etc/nginx/nginx.conf syntax is ok[0m
+[38;5;231m    [0m[38;5;231mnginx:[0m[38;5;231m configuration file /etc/nginx/nginx.conf test is successful[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m [0m[38;5;203m<[0m[38;5;231m...[0m[38;5;203m>[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;203m`[0m[38;5;203mnginx -t[0m[38;5;203m`[0m[38;5;167m reads the configuration and tells you whether it would load, [0m[1;38;5;203m**[0m[1;38;5;203mwithout[0m[1;38;5;203m**[0m
+[38;5;167m    touching the running server. Get into the habit of running it before every reload:[0m
+[38;5;167m    a reload with a broken file leaves the old configuration running, but a [0m[1;38;5;203m**[0m[1;38;5;203mrestart[0m[1;38;5;203m**[0m
+[38;5;167m    with a broken file leaves you with no web server at all.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mA reload is not instant.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mThe old worker processes finish what they are doing[0m
+[38;5;167m    before the new ones take over. Measured on these VMs, a request sent immediately after[0m
+[38;5;167m    a reload gets the OLD configuration about half the time. If the page looks unchanged,[0m
+[38;5;167m    wait a second and ask again before you start debugging.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[1;38;5;203mNow go back to step 5 and check all four rows of its table.[0m[1;38;5;203m**[0m[38;5;231m They are what you have[0m
+[38;5;231m    [0m[38;5;231mjust applied, and this is the first moment they can be true.[0m
+
+[38;5;231m7[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mNow break it on purpose, so that you recognise it later. Open your server block,[0m
+[38;5;231m    [0m[38;5;231mdelete the semicolon at the end of the [0m[38;5;203m`[0m[38;5;203mindex[0m[38;5;203m`[0m[38;5;231m line, save, and test. Which word does[0m
+[38;5;231m    [0m[38;5;231mnginx print in square brackets? [0m[1;38;5;203m**[0m[1;38;5;203m→ [0m[1;38;5;203m`[0m[1;38;5;203mT7[0m[1;38;5;203m`[0m[1;38;5;203m**[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231mnginx:[0m[38;5;231m [0m[38;5;203m[[0m[38;5;231m<...>[0m[38;5;203m][0m[38;5;231m directive [0m[38;5;231m"[0m[38;5;186mindex[0m[38;5;231m"[0m[38;5;231m is not terminated by [0m[38;5;231m"[0m[38;5;186m;[0m[38;5;231m"[0m[38;5;231m in /etc/nginx/conf.d/noticeboard.conf:[0m[38;5;203m<[0m[38;5;231mline[0m[38;5;203m>[0m
+[38;5;231m    [0m[38;5;231mnginx:[0m[38;5;231m configuration file /etc/nginx/nginx.conf test failed[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mIt names the file and the line — your line number will be whatever it is in the block[0m
+[38;5;167m    you wrote. Most nginx configuration errors are this specific, and almost all of them are[0m
+[38;5;167m    a missing semicolon or a missing brace.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mCompare it with a different failure: if you point [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;167m at a directory that does not[0m
+[38;5;167m    exist, [0m[38;5;203m`[0m[38;5;203mnginx -t[0m[38;5;203m`[0m[38;5;167m is perfectly happy — the file is valid — and the site answers [0m[38;5;203m`[0m[38;5;203m404[0m[38;5;203m`[0m
+[38;5;167m    instead. A configuration that [0m[1;38;5;203m**[0m[1;38;5;203mloads[0m[1;38;5;203m**[0m[38;5;167m and a configuration that [0m[1;38;5;203m**[0m[1;38;5;203mworks[0m[1;38;5;203m**[0m[38;5;167m are two[0m
+[38;5;167m    different tests, and you have now seen both.[0m[38;5;167m*[0m
+
+[38;5;231m8[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mPut the semicolon back, test, reload, and open your site from your own computer again.[0m
+[38;5;231m    [0m[38;5;231mWhat does the page show after the words [0m[38;5;203m`[0m[38;5;203mdeployed by[0m[38;5;203m`[0m[38;5;231m? [0m[1;38;5;203m**[0m[1;38;5;203m→ [0m[1;38;5;203m`[0m[1;38;5;203mT8[0m[1;38;5;203m`[0m[1;38;5;203m**[0m
+
+[38;5;231m    [0m[38;5;231m```[0m
+[38;5;231m    INT134 Noticeboard[0m
+[38;5;231m    deployed by <...>[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mIf it still says [0m[38;5;203m`[0m[38;5;203m(not configured)[0m[38;5;203m`[0m[38;5;167m, the browser is showing you a cached copy or[0m
+[38;5;167m    [0m[38;5;203m`[0m[38;5;203mconfig.js[0m[38;5;203m`[0m[38;5;167m is not where the page expects it. [0m[38;5;203m`[0m[38;5;203mcurl http://<your-vm>.sit.kmutt.ac.th/config.js[0m[38;5;203m`[0m
+[38;5;167m    from your laptop settles which.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;231mNow look at what your own site wrote down about that visit:[0m
+
+[38;5;231m    [0m[38;5;231m```[0m[38;5;141mbash[0m
+[38;5;231m    [0m[38;5;231m$[0m[38;5;231m tail[0m[38;5;208m -[0m[38;5;208m3[0m[38;5;231m /var/log/nginx/[0m[38;5;203m<[0m[38;5;231myour access log[0m[38;5;203m>[0m
+[38;5;231m    [0m[38;5;231m10.x.x.x[0m[38;5;231m - - [0m[38;5;203m[[0m[38;5;231m<...>[0m[38;5;203m][0m[38;5;231m [0m[38;5;231m"[0m[38;5;186mGET / HTTP/1.1[0m[38;5;231m"[0m[38;5;231m 200 1365 [0m[38;5;231m"[0m[38;5;186m-[0m[38;5;231m"[0m[38;5;231m [0m[38;5;231m"[0m[38;5;186mMozilla/5.0 <...>[0m[38;5;231m"[0m[38;5;231m [0m[38;5;231m"[0m[38;5;186m-[0m[38;5;231m"[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mNo [0m[38;5;203m`[0m[38;5;203msudo[0m[38;5;203m`[0m[38;5;167m, and that is worth a moment.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mRun [0m[38;5;203m`[0m[38;5;203mls -l /var/log/nginx/[0m[38;5;203m`[0m[38;5;167m and look at[0m
+[38;5;167m    the file you just caused to exist: [0m[38;5;203m`[0m[38;5;203m-rw-r--r--[0m[38;5;203m`[0m[38;5;167m, owner [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;167m. Anybody on the machine[0m
+[38;5;167m    may read it and only [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;167m may write it. [0m[1;38;5;203m**[0m[1;38;5;203mReading the evidence and changing the[0m
+[1;38;5;203m    system are different privileges[0m[1;38;5;203m**[0m[38;5;167m, and a well-set-up machine hands out the first far[0m
+[38;5;167m    more freely than the second.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mOwned by [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;167m, when the workers run as somebody else?[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mIt is the [0m[1;38;5;203m**[0m[1;38;5;203mmaster[0m[1;38;5;203m**[0m[38;5;167m that[0m
+[38;5;167m    opens the log files — the one privileged process from class 3 — and the workers only[0m
+[38;5;167m    write down descriptors it opened for them. Look again in a day or two, though:[0m
+[38;5;167m    [0m[38;5;203m`[0m[38;5;203mlogrotate[0m[38;5;203m`[0m[38;5;167m runs nightly, and the line [0m[38;5;203m`[0m[38;5;203mcreate 640 nginx adm[0m[38;5;203m`[0m[38;5;167m in its configuration[0m
+[38;5;167m    says what the replacement file looks like. Yours will come back [0m[38;5;203m`[0m[38;5;203m-rw-r----- nginx[0m
+[38;5;203m    adm[0m[38;5;203m`[0m[38;5;167m, and you will still read it without [0m[38;5;203m`[0m[38;5;203msudo[0m[38;5;203m`[0m[38;5;167m — through the [0m[38;5;203m`[0m[38;5;203madm[0m[38;5;203m`[0m[38;5;167m group, which your[0m
+[38;5;167m    account is already in and which exists for exactly this.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mEvery field there comes from the [0m[38;5;203m`[0m[38;5;203mmain[0m[38;5;203m`[0m[38;5;167m format in [0m[38;5;203m`[0m[38;5;203mnginx.conf[0m[38;5;203m`[0m[38;5;167m: who asked, when, what[0m
+[38;5;167m    they asked for, [0m[1;38;5;203m**[0m[1;38;5;203mwhat you answered[0m[1;38;5;203m**[0m[38;5;167m ([0m[38;5;203m`[0m[38;5;203m200[0m[38;5;203m`[0m[38;5;167m), and how many bytes you sent. This is the[0m
+[38;5;167m    file you will open first, for the rest of your career, when somebody says "the site is[0m
+[38;5;167m    broken" — because it tells you whether their request ever arrived at all.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mIf yours is empty, nginx never reloaded, or you are reading the shared log instead of[0m
+[38;5;167m    your own.[0m[38;5;167m*[0m
+
+[38;5;231m9[0m[38;5;243m.[0m[38;5;231m [0m[38;5;231mThe page has a form. Fill it in and press [0m[1;38;5;203m**[0m[1;38;5;203mAdd notice[0m[1;38;5;203m**[0m[38;5;231m. What status does the page[0m
+[38;5;231m    [0m[38;5;231mreport back? [0m[1;38;5;203m**[0m[1;38;5;203m→ [0m[1;38;5;203m`[0m[1;38;5;203mT9[0m[1;38;5;203m`[0m[1;38;5;203m**[0m
+
+[38;5;231m    [0m[38;5;231m```[0m
+[38;5;231m    <...> — this deployment serves files and cannot accept new notices.[0m
+[38;5;231m    Storing data needs something more than a web server.[0m
+[38;5;231m    [0m[38;5;231m```[0m
+
+[38;5;231m    [0m[1;38;5;203m**[0m[38;5;167m*[0m[38;5;167mThis is the step the whole lab is built towards.[0m[38;5;167m*[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;167m*[0m[38;5;167mNothing is broken. You asked a[0m
+[38;5;167m    file server to store something, and it told you, correctly, that it does not do that.[0m
+[38;5;167m    A web server hands out files that already exist; it has nowhere to put a new one and no[0m
+[38;5;167m    idea what it would mean to try.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mThat is what class 4 is: the program that accepts the notice, and the database that[0m
+[38;5;167m    keeps it. Your site is finished. Your application is not.[0m[38;5;167m*[0m
+
+[38;5;231m    [0m[38;5;167m*[0m[38;5;167mLook at your access log once more before you go. The attempt you just made is in it,[0m
+[38;5;167m    with the status the server gave it — the same one the page reported to you. [0m[1;38;5;203m**[0m[1;38;5;203mA refusal[0m
+[1;38;5;203m    is not an outage[0m[1;38;5;203m**[0m[38;5;167m, and telling the two apart from the log alone is most of what[0m
+[38;5;167m    on-call work is.[0m[38;5;167m*[0m
+
+[38;5;141m&[0m[38;5;141mnbsp[0m[38;5;141m;[0m
+
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mWhat is checked[0m
+
+[38;5;203m`[0m[38;5;203mint134 check lab03[0m[38;5;203m`[0m[38;5;231m looks at three things: the state of your machine, [0m[1;38;5;203m**[0m[1;38;5;203myour site as seen[0m
+[1;38;5;203mfrom my server[0m[1;38;5;203m**[0m[38;5;231m, and your answers.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mOn your machine.[0m[1;38;5;203m**[0m[38;5;231m These need the work actually done, not described:[0m
+
+[38;5;231m|[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m Checked [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m[38;5;231m [0m[38;5;231m:[0m[38;5;231m---[0m[38;5;231m [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m Readiness [0m[38;5;231m|[0m[38;5;231m nginx is installed, and is the build from the repository class 3 added rather than the distribution's; it is enabled; it is active; its workers run as something other than root; something is listening on port 80 [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m Step 1 [0m[38;5;231m|[0m[38;5;231m the application is unpacked into [0m[38;5;203m`[0m[38;5;203m/srv/noticeboard[0m[38;5;203m`[0m[38;5;231m, one directory level deep and not two; it belongs to you, group and owner both; and the group can write wherever you can, the [0m[38;5;203m`[0m[38;5;203m2775[0m[38;5;203m`[0m[38;5;231m and the [0m[38;5;203m`[0m[38;5;203mfind[0m[38;5;203m`[0m[38;5;231m together [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m Step 2 [0m[38;5;231m|[0m[38;5;231m what you serve is a [0m[1;38;5;203m**[0m[1;38;5;203mcopy[0m[1;38;5;203m**[0m[38;5;231m and not the source directory; and the files you deployed into it are not group-writable [0m[38;5;231m|[0m
+[38;5;231m|[0m[38;5;231m Steps 3 to 5 [0m[38;5;231m|[0m[38;5;231m your server block names a port, a document root, an index, and an access log and error log of its own — under [0m[38;5;203m`[0m[38;5;203m/var/log/nginx/[0m[38;5;203m`[0m[38;5;231m so that they rotate — that nginx has actually opened; it claims both of your VM's own names and is the block that answers a name nobody claims, while your class 3 site still answers to its own; the example that came with the package is out of service and still on the machine; the noticeboard's files are all in that root; [0m[38;5;203m`[0m[38;5;203mconfig.js[0m[38;5;203m`[0m[38;5;231m carries an 11-digit student number and the web server can read it [0m[38;5;231m|[0m
+
+[1;38;5;203m**[0m[1;38;5;203mThe readiness checks are the same six [0m[1;38;5;203m`[0m[1;38;5;203mlab03class[0m[1;38;5;203m`[0m[1;38;5;203m runs, and they count here too.[0m[1;38;5;203m**[0m[38;5;231m They[0m
+[38;5;231mare not a separate exercise — they are the machine class 3 built, still working. Doing this[0m
+[38;5;231mlab without them is not possible, and doing them a second time is not asked of you.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mFrom my server, over the network.[0m[1;38;5;203m**[0m[38;5;231m These are the ones you cannot satisfy from inside your[0m
+[38;5;231mown VM: your site answers on port 80, [0m[38;5;203m`[0m[38;5;203mconfig.js[0m[38;5;203m`[0m[38;5;231m identifies the deployment as yours, and[0m
+[38;5;231mthe notices file is being served.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mFrom your answer file.[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203mT5[0m[38;5;203m`[0m[38;5;231m, [0m[38;5;203m`[0m[38;5;203mT7[0m[38;5;203m`[0m[38;5;231m, [0m[38;5;203m`[0m[38;5;203mT8[0m[38;5;203m`[0m[38;5;231m, [0m[38;5;203m`[0m[38;5;203mT9[0m[38;5;203m`[0m[38;5;231m — four questions, all of them about work[0m
+[38;5;231min this sheet. The questions about class 3 were asked in class 3, on the [0m[38;5;203m`[0m[38;5;203mlab03class[0m[38;5;203m`[0m[38;5;231m sheet,[0m
+[38;5;231mand are not asked again here.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mNothing checks the value of [0m[1;38;5;203m`[0m[1;38;5;203mnoticesUrl[0m[1;38;5;203m`[0m[1;38;5;203m, deliberately.[0m[1;38;5;203m**[0m[38;5;231m Class 5 changes it, and a check[0m
+[38;5;231mon it would fail you for doing that class correctly.[0m
+
+[1;38;5;203m**[0m[1;38;5;203mThe firewall is not checked directly, and does not need to be.[0m[1;38;5;203m**[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203msudo ufw status[0m[38;5;203m`[0m[38;5;231m needs[0m
+[38;5;231mprivileges the checker does not have — but it does not need them, because the probe from my[0m
+[38;5;231mserver tests the same thing better. If your machine says port 80 is listening and my server[0m
+[38;5;231mcannot reach it, the firewall is the only thing left. That pairing is the diagnosis, and it[0m
+[38;5;231mis why those two checks exist as a pair.[0m
+
+[38;5;231mStep 7 is not checked on the machine either, for a better reason: its end state is identical[0m
+[38;5;231mto having done nothing. A semicolon you put back leaves no trace. What you saw happen is[0m
+[38;5;231mevidence only you have, which is exactly why that step is a question.[0m
+
+[38;5;141m&[0m[38;5;141mnbsp[0m[38;5;141m;[0m
+
+
+[1;38;5;231m---[0m
+
+[38;5;208m###[0m[38;5;208m [0m[38;5;208mWithout the sheet[0m
+
+[38;5;231mThis is the same lab with the steps taken away — the deployment stated as six outcomes.[0m
+[38;5;231mIf you can work through this list without looking back at the steps, you can do this job.[0m
+
+[38;5;243m-[0m[38;5;231m [0m[38;5;231mnginx is installed, and it is the build from the repository class 3 added rather than the[0m
+[38;5;231m  [0m[38;5;231mone Ubuntu ships.[0m
+[38;5;243m-[0m[38;5;231m It starts at boot, and it is running now.[0m
+[38;5;243m-[0m[38;5;231m Port 80 is open to the outside, and nothing else has been opened that was not open[0m
+[38;5;231m  [0m[38;5;231mbefore.[0m
+[38;5;243m-[0m[38;5;231m The application is unpacked at [0m[38;5;203m`[0m[38;5;203m/srv/noticeboard[0m[38;5;203m`[0m[38;5;231m, it belongs to you rather than to[0m
+[38;5;231m  [0m[38;5;203m`[0m[38;5;203mroot[0m[38;5;203m`[0m[38;5;231m, and anyone in your group can write wherever you can.[0m
+[38;5;243m-[0m[38;5;231m [0m[38;5;203m`[0m[38;5;203m/var/www/noticeboard[0m[38;5;203m`[0m[38;5;231m holds the site, it is a copy rather than the source directory,[0m
+[38;5;231m  [0m[38;5;231mnothing you deployed into it is group-writable, and a server block you wrote serves it — with an access[0m
+[38;5;231m  [0m[38;5;231mlog and an error log of its own, where logs go and rotate — to a visitor who asks for[0m
+[38;5;231m  [0m[38;5;231myour VM by either of its own names, or by any name nobody[0m
+[38;5;231m  [0m[38;5;231melse has claimed, while the class site still answers to its own and the block that came[0m
+[38;5;231m  [0m[38;5;231mwith the package is out of service without having been deleted.[0m
+[38;5;243m-[0m[38;5;231m Somebody at another machine can load the page and see your student number on it.[0m
+
+[38;5;231mNothing here is new and nothing here is extra. It is worth ten minutes at the end, because[0m
+[38;5;231mit is how the lab exam will be written: an outcome, a machine, and no list of commands.[0m

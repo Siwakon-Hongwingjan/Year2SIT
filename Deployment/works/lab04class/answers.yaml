@@ -1,0 +1,66 @@
+# INT134 System Deployment — Deploy Backend and DBMS — worked in class
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+#
+# Fill in student_id and student_name below. They are checked against the VM you
+# are submitting from, so a wrong id is reported back to you on your next push.
+
+student_id: "68130500068"      # your 11-digit student number
+student_name: "siwakon hongwiangjan"
+
+answers:
+  # Step 1 — straight after installing, what did `is-active` print?
+  T1: |
+    active
+  # Step 2 — which address is the database listening on?
+  T2: |
+    127.0.0.1
+  # Step 3 — does the database need a firewall rule of its own?
+  T3: |
+    no
+  # Step 4 — connecting as yourself, without sudo, what did it say?
+  T4: |
+    ERROR 1045 (28000): Access denied for user 'sysadmin'@'localhost' (using password: NO)
+  # Step 7 — what is the second GRANT line's scope?
+  T7: |
+    `school`.*
+  # Step 8 — as that user, can you see the server's own `mysql` database?
+  T8: |
+    no
+  # Step 9 — how many rows are on the register, and one student's major?
+  T9: |
+    3 DSI
+  # Step 10 — which host did you give as the MySQL hostname?
+  T10: |
+    localhost
+  # Step 12 — what does `npm ci` require that `npm install` does not?
+  T12: |
+    package-lock.json
+  # Step 14 — which error code did the first migrate stop on, and what was it
+  # refusing to do?
+  T14: |
+    P3014 - refuse to create the shadow database
+  # Step 15 — what did the encoder print for the example on the sheet?
+  T15: |
+    p%40ss%3Aw%2Frd
+  # Step 16 — and which error code did it refuse with the second time?
+  T16: |
+    P3014
+  # Step 17 — what did the comparison print, and what would a non-zero exit
+  # have meant?
+  T17: |
+    No difference detected. different
+  # Step 23 — posting with a field missing, what status came back?
+  T23: |
+    400
+  # Step 24 — after restarting the service, was the student still there?
+  T24: |
+    yes
+  # Step 25 — and from your own computer, did the API answer?
+  T25: |
+    yes
+

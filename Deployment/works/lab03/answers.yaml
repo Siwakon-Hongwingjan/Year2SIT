@@ -1,0 +1,27 @@
+# INT134 System Deployment — Deploy Static Web
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+#
+# Fill in student_id and student_name below. They are checked against the VM you
+# are submitting from, so a wrong id is reported back to you on your next push.
+
+student_id: "68130500068"      # your 11-digit student number
+student_name: "siwakon hongwiangjan"
+
+answers:
+  # Step 5 — which file in conf.d came with the package?
+  T5: |
+    default.conf
+  # Step 7 — which word in square brackets did nginx use?
+  T7: |
+    emerg
+  # Step 8 — what does the page show after `deployed by`?
+  T8: |
+    68130500068
+  # Step 9 — what status did the server give the Add button?
+  T9: |
+    405

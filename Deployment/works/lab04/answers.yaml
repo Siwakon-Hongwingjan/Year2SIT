@@ -1,0 +1,46 @@
+# INT134 System Deployment — Deploy Backend and DBMS
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+#
+# Fill in student_id and student_name below. They are checked against the VM you
+# are submitting from, so a wrong id is reported back to you on your next push.
+
+student_id: "68130500068"      # your 11-digit student number
+student_name: "Siwakon Hongwiangjan"
+
+answers:
+  # Step 4 — the SQL statement that would issue a new password
+  T4a: |
+    ALTER USER 'noticeboard'@'localhost' IDENTIFIED BY RANDOM PASSWORD;
+  # Step 4 — the full path of the file that has to change as well
+  T4b: |
+    /srv/noticeboard/backend/.env
+  # Step 4 — the command that makes the running service use it
+  T4c: |
+    sudo systemctl restart noticeboard.service
+  # Step 5 — the databases this user can see, then the one that is missing
+  T5: |
+    Can see:  information_schema, noticeboard, performance_schema
+    Missing:  school
+  # Step 8 — two tables where the migration asked for one: what is the other called?
+  T8: |
+    _prisma_migrations
+  # Step 9 — before you added anything, how many notices were there?
+  T9: |
+    0
+  # Step 10 — comparing your two unit files, which two values differ?
+  T10: |
+    WorkingDirectory and EnvironmentFile
+  # Step 12 — starting a second copy by hand, which error did Node print?
+  T12: |
+    listen EADDRINUSE: address already in use 0.0.0.0:3000
+  # Step 13 — what does the health endpoint report as `student`?
+  T13: |
+    68130500068
+  # Step 15 — deleting the same notice twice, what were the two statuses?
+  T15: |
+    204 No Content and 404 Not Found

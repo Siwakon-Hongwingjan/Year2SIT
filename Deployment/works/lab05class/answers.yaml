@@ -1,0 +1,69 @@
+# INT134 System Deployment — Reverse Proxy, Integration and TLS — worked in class
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+#
+# Fill in student_id and student_name below. They are checked against the VM you
+# are submitting from, so a wrong id is reported back to you on your next push.
+
+student_id: "68130500068"      # your 11-digit student number
+student_name: "Siwakon Hongwiangjan"
+
+answers:
+  # Step 3 — what did the page show where the register should be?
+  T3: |
+    Could not load the register: Failed to fetch
+  # Step 4 — what did the browser console say when the register failed?
+  T4: |
+    Access to fetch at 'http://lvm68068.sit.kmutt.ac.th:3068/school/api/students' from origin 'http://lvm68068.sit.kmutt.ac.th:8068' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+  # Step 5 — the same URL from the command line and the address bar: did they work?
+  T5: |
+    yes
+  # Step 6 — the two addresses: what differs, and what is the same?
+  T6: |
+    differs: port
+    same: host
+  # Step 7 — which header was the browser looking for and not finding?
+  T7: |
+    Access-Control-Allow-Origin
+  # Step 10 — after the reload, did the register appear?
+  T10: |
+    yes
+  # Step 11 — if the page moved to a different port, what else would you have to change?
+  T11: |
+    .env , CROS-Origin 
+  # Step 13 — what Host did the proxy send, and what was missing from the request?
+  T13: |
+    127.0.0.1:9099 , X-Real-IP , X-Forwarded-For , X-Forwarded-For
+  # Step 14 — asking again, what was different about the request?
+  T14: |
+    X-Real-IP , X-Forwarded-For , X-Forwarded-For
+  # Step 17 — the two addresses again: served from, and asks for
+  T17: |
+    served from:http://lvm68068.sit.kmutt.ac.th:8068/
+    asks for:http://lvm68068.sit.kmutt.ac.th:8068/api/students
+  # Step 18 — what address does the service say it is listening on now?
+  T18: |
+    school api listening on 127.0.0.1:3068
+  # Step 19 — from your own computer, does the API's own port answer?
+  T19: |
+    no
+  # Step 23 — how many ports does this machine now allow in, and which?
+  T23: |
+   2 ,22 and 80 
+  # Step 24 — which path did the API say it received?
+  T24: |
+    /api/health
+  # Step 28 — what the browser showed, and the certificate's own two name lines
+  T28: |
+    Your connection is not private , subject and issuer
+  # Step 29 — through a 301 and through a 308, what did the API log?
+  T29: |
+    GET and POST 
+  # Step 30 — which file in conf.d answered each of the three names?
+  T30: |
+    http-defaulth.conf , site.conf , http-defaulth.conf

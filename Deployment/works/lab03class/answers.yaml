@@ -1,0 +1,49 @@
+# INT134 System Deployment — Deploy Static Web — worked in class
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+#
+# Fill in student_id and student_name below. They are checked against the VM you
+# are submitting from, so a wrong id is reported back to you on your next push.
+
+student_id: "68130500068"      # your 11-digit student number
+student_name: "siwakon hongwiangjan"
+
+answers:
+  # Step 4 — which host does the candidate come from now?
+  # hint: Step 4. The answer is the host name.
+  T4: |
+    nginx.org
+  # Step 6 — straight after installing, what did `is-enabled` print?
+  T6: |
+    enabled
+  # Step 7 — straight after installing, what did `is-active` print?
+  T7: |
+    inactive
+  # Step 9 — which user do the worker processes run as?
+  T9: |
+    nginx
+  # Step 10 — and which user does the master process run as?
+  T10: |
+    root
+  # Step 12 — whose page did the server give you?
+  T12: |
+    nginx
+  # Step 13 — from your own computer, did the page load?
+  T13: |
+    no
+  # Step 14 — and after you changed the firewall, did it load?
+  T14: |
+    yes
+  # Step 18 — asking by your VM's own address, which page came back?
+  T18: |
+    nginx
+  # Step 19 — what did you change to make your site the one that answers?
+  T19: |
+    แ้change filename
+  # Step 20 — which keyword did you add to your `listen` line?
+  T20: |
+    default_server

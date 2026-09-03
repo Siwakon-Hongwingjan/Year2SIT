@@ -1,0 +1,51 @@
+# INT134 System Deployment — Package Management and Service Manager
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+
+student_id: "68130500068"
+student_name: "Siwakon Hongwiangjan"
+
+answers:
+  # Step 4 — running `id` under sudo, what is the uid value?
+  T4: |
+    0
+  # Step 5 — what does `sudo who am i` print?
+  T5: |
+    sysadmin pts/0
+  # Step 6 — what does `sudo whoami` print?
+  T6: |
+    root
+  # Step 7 — who owns a directory created with sudo?
+  T7: |
+    root
+  # Step 15 — the command that let the sysadmin group write to tempdir
+  T15: |
+    sudo chmod g+w tempdir
+  # Step 17 — the command you used to create testfile2 as the test user
+  T17: |
+    sudo -u test touch testfile2
+  # Step 18 — the command that refreshes package meta-information
+  T18: |
+    sudo apt update
+  # Step 20 — the command that lists upgradable packages
+  T20: |
+    apt list --upgradable
+  # Step 22 — what is the download size of unzip 6.0-28ubuntu4?
+  T22: |
+    174538 bytes
+  # Step 28 — which program is running as pid 1?
+  T28: |
+    systemd
+  # Step 33 — right after disabling cron (without stopping it), what is its Active state?
+  T33: |
+    active
+  # Step 34 — and after the reboot, what is cron's Active state?
+  T34: |
+    inactive (dead)
+  # Step 35 — after enabling (without starting it), what is cron's Active state?
+  T35: |
+    inactive (dead)

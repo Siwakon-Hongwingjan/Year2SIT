@@ -1,0 +1,72 @@
+# INT134 System Deployment — Managing Processes
+#
+# Put each answer inside a `|` block, exactly as you will write `run: |` in
+# Docker Compose and GitHub Actions later in this course.  Indentation matters:
+# the answer lines sit two spaces further in than their key.
+#
+# Only what is inside the blocks is marked. You may leave an answer blank.
+#
+# Fill in student_id and student_name below. They are checked against the VM you
+# are submitting from, so a wrong id is reported back to you on your next push.
+
+student_id: "68130500068"      # your 11-digit student number
+student_name: "Siwakon Hongwiangjan"
+
+answers:
+  # Step 1 — which of the commands `ps` listed is your shell?
+  T1: |
+    bash
+  # Step 3 — what command is your shell's parent process?
+  T3: |
+    sshd
+  # Step 4 — which user does cron run as?
+  T4: |
+    root
+  # Step 6 — which port is listening on 127.0.0.53?
+  T6: |
+    53
+  # Step 7 — the third load-average figure covers how many minutes?
+  T7: |
+    15
+  # Step 11 — after logging out and back in, was it still running?
+  T11: |
+    running
+  # Step 12 — what is its parent process id now?
+  T12: |
+    1
+  # Step 13 — is anything collecting its output?
+  T13: |
+    no
+  # Step 14 — with huponexit switched on, was it still running?
+  T14: |
+    no
+  # Step 15 — which file collected its output?
+  T15: |
+    nohup.out
+  # Step 16 — which signal number does plain `kill` send?
+  T16: |
+    15
+  # Step 19 — which of the two commands actually ended it?
+  T19: |
+    kill -9 36902
+  # Step 20 — which signal number can a program not catch?
+  T20: |
+    9
+  # Step 22 — which command did systemd tell you to run?
+  T22: |
+    systemctl daemon-reload
+  # Step 24 — what does `systemctl is-active` print?
+  T24: |
+    active
+  # Step 26 — after kill -9, was the Main PID the same or different?
+  T26: |
+    different
+  # Step 27 — which command showed you the script's output?
+  T27: |
+     journalctl -u int134-heartbeat
+  # Step 28 — after the reboot, was the service running?
+  T28: |
+    yes
+  # Step 29 — after the reboot, was the nohup process still running?
+  T29: |
+    no
