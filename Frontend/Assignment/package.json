@@ -1,0 +1,12 @@
+{
+  "name": "frontend-assignment",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "jsdom": "^25"
+  }
+}
