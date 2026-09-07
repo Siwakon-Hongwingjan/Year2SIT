@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>msgboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Message board</h1>
+    <form id="post-form">
+      <input id="author" name="author" placeholder="Your name" maxlength="80" required>
+      <textarea id="body" name="body" placeholder="Say something..." maxlength="2000" required></textarea>
+      <button type="submit">Post</button>
+      <p id="error" class="error" hidden></p>
+    </form>
+    <ul id="messages"></ul>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
