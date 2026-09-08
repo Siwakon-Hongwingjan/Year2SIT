@@ -2,34 +2,34 @@
 
 > Source: Slides/01_JS_Review.pdf · synced 2026-09-04
 
-## Key concepts
-- Variable declaration: `let` (mutable, block scope), `const` (immutable binding), `var` (legacy, avoid).
-- Primitive types: String, Number, Boolean, null, undefined — check with `typeof`.
-- Conditionals: `if/else if/else` for ranges/multi-condition logic; `switch` for comparing one variable against many enum-like values (readable when 3-4+ cases).
-- Loops: `for` (known count), `while` (unknown count, condition-checked-first), `do...while` (runs body at least once), `for...of` (iterates values — arrays/strings/Map/Set), `for...in` (iterates keys — objects only, **never** arrays: gives string indices).
-- `break` exits a loop immediately; `continue` skips to the next iteration.
-- Functions: 3 forms — declaration (hoisted), expression, arrow function (concise, modern). All produce equivalent behavior; arrow functions don't have their own `this`.
-- Parameters/return: functions without `return` yield `undefined`. Scope — local (inside function) vs global.
-- Higher-order functions: functions that accept/return other functions (e.g. passing a `shippingFn` calculator).
-- Arrays: index from 0, `.length`; core methods `push/pop`, `forEach`, `map`, `filter`, `reduce`, `find`.
-- Objects: key-value pairs; access via dot or bracket notation; methods use `this` to reference the owning object.
-- Spread (`...`): copies/merges arrays or objects (shallow, top level only), spreads args into function calls (`Math.max(...arr)`). Object spread with duplicate keys — last one wins (useful for immutable state updates).
-- Rest (`...`) — opposite of spread: gathers many function arguments into one array parameter.
-- Destructuring: array (positional, can skip/default/swap) and object (by key name, can rename/default/nested) — very common for API responses and function parameters.
-- `Date`: construct via `new Date()`, `new Date(y, m, d)` (**month is 0-indexed**), ISO string, or `Date.now()` (timestamp in ms). Getters: `getFullYear`, `getMonth` (0-11), `getDate`, `getDay` (0=Sun), `getHours/Minutes`. No `addDays()` — must combine `setDate(getDate() + n)`. Date subtraction yields milliseconds; convert to days via `/ (1000*60*60*24)`. Display with `toLocaleString/toLocaleDateString/toLocaleTimeString('th-TH')`; serialize with `toISOString()`.
-- Regular Expressions: pattern literal `/pattern/flags` or `new RegExp()`. Flags: `g` (global), `i` (case-insensitive). Common classes: `\d`, `\w`, `\s`, anchors `^`/`$`, quantifiers `* + ? {n,m}`. Methods: `test()` (bool), `match()`, `replace()`, `split()`.
-- Exception handling: `try { }catch(error){ }finally{ }`. `finally` always runs. Uncaught errors stop the whole script. `throw new Error(message)` creates a custom error with `.message`/`.name`. Custom error classes via `class X extends Error` + `super(message)`, distinguish with `instanceof` in `catch`.
-- JS Modules: 1 file = 1 module with its own scope. ES Modules use `export`/`import`; named exports (many per file, import with matching `{ name }`) vs default export (exactly one per file, import name is arbitrary). `import { x as y }`, `import * as ns`, mixing default + named imports. CommonJS (`module.exports` / `require`) shown as the older Node-style alternative.
+## แนวคิดหลัก
+- การประกาศตัวแปร: `let` (แก้ค่าได้, block scope), `const` (ผูกค่าเปลี่ยนไม่ได้), `var` (ของเก่า, เลี่ยง).
+- ชนิดข้อมูลพื้นฐาน (primitive): String, Number, Boolean, null, undefined — ตรวจด้วย `typeof`.
+- เงื่อนไข: `if/else if/else` สำหรับตรรกะแบบช่วงค่า/หลายเงื่อนไข; `switch` สำหรับเทียบตัวแปรตัวเดียวกับค่าแบบ enum หลายค่า (อ่านง่ายเมื่อมี 3-4 เคสขึ้นไป).
+- ลูป: `for` (รู้จำนวนรอบ), `while` (ไม่รู้จำนวนรอบ, เช็คเงื่อนไขก่อน), `do...while` (ทำ body อย่างน้อย 1 รอบ), `for...of` (วนค่า — array/string/Map/Set), `for...in` (วน key — ใช้กับ object เท่านั้น, **ห้าม** ใช้กับ array เพราะได้ index เป็น string).
+- `break` ออกจากลูปทันที; `continue` ข้ามไปรอบถัดไป.
+- ฟังก์ชัน: มี 3 รูปแบบ — declaration (hoist ได้), expression, arrow function (กระชับ, สมัยใหม่). ทั้งหมดให้พฤติกรรมเทียบเท่ากัน; arrow function ไม่มี `this` ของตัวเอง.
+- พารามิเตอร์/การคืนค่า: ฟังก์ชันที่ไม่มี `return` จะให้ `undefined`. Scope — local (ในฟังก์ชัน) กับ global.
+- Higher-order function: ฟังก์ชันที่รับ/คืนฟังก์ชันอื่น (เช่น ส่งฟังก์ชัน `shippingFn` เข้าไปคำนวณ).
+- Array: index เริ่มที่ 0, มี `.length`; เมธอดหลัก `push/pop`, `forEach`, `map`, `filter`, `reduce`, `find`.
+- Object: คู่ key-value; เข้าถึงด้วย dot หรือ bracket notation; เมธอดใช้ `this` อ้างถึง object เจ้าของ.
+- Spread (`...`): ก็อป/รวม array หรือ object (แบบ shallow, ระดับบนสุดเท่านั้น), กระจาย argument เข้า function call (`Math.max(...arr)`). Object spread ที่ key ซ้ำ — ตัวหลังชนะ (มีประโยชน์กับการอัปเดต state แบบ immutable).
+- Rest (`...`) — ตรงข้ามกับ spread: รวบ argument หลายตัวเข้าเป็น array parameter ตัวเดียว.
+- Destructuring: แบบ array (ตามตำแหน่ง, ข้าม/ตั้ง default/สลับค่าได้) และแบบ object (ตามชื่อ key, เปลี่ยนชื่อ/ตั้ง default/ซ้อนได้) — เจอบ่อยมากกับ response ของ API และพารามิเตอร์ฟังก์ชัน.
+- `Date`: สร้างด้วย `new Date()`, `new Date(y, m, d)` (**เดือนนับจาก 0**), ISO string, หรือ `Date.now()` (timestamp เป็น ms). Getter: `getFullYear`, `getMonth` (0-11), `getDate`, `getDay` (0=อาทิตย์), `getHours/Minutes`. ไม่มี `addDays()` — ต้องรวม `setDate(getDate() + n)`. การลบ Date ได้ผลเป็นมิลลิวินาที; แปลงเป็นวันด้วย `/ (1000*60*60*24)`. แสดงผลด้วย `toLocaleString/toLocaleDateString/toLocaleTimeString('th-TH')`; serialize ด้วย `toISOString()`.
+- Regular Expression: literal `/pattern/flags` หรือ `new RegExp()`. Flags: `g` (global), `i` (ไม่สนตัวพิมพ์เล็กใหญ่). คลาสที่ใช้บ่อย: `\d`, `\w`, `\s`, anchor `^`/`$`, quantifier `* + ? {n,m}`. เมธอด: `test()` (คืน bool), `match()`, `replace()`, `split()`.
+- การจัดการ exception: `try { } catch(error) { } finally { }`. `finally` รันเสมอ. error ที่ไม่ถูกจับจะหยุดสคริปต์ทั้งไฟล์. `throw new Error(message)` สร้าง error ที่มี `.message`/`.name`. สร้าง error class เองด้วย `class X extends Error` + `super(message)`, แยกแยะด้วย `instanceof` ใน `catch`.
+- JS Modules: 1 ไฟล์ = 1 module มี scope ของตัวเอง. ES Modules ใช้ `export`/`import`; named export (มีได้หลายตัวต่อไฟล์, import ด้วยชื่อที่ตรงกันใน `{ name }`) เทียบกับ default export (มีได้ตัวเดียวต่อไฟล์, ตั้งชื่อตอน import อะไรก็ได้). `import { x as y }`, `import * as ns`, ผสม default + named ได้. CommonJS (`module.exports` / `require`) เป็นแบบเก่าสไตล์ Node.
 
-## Definitions to memorize
-- **Hoisting**: function declarations can be called before their definition appears in the file; function expressions/arrow functions cannot.
-- **Immutability (via spread)**: creating a new array/object copy instead of mutating the original — common pattern for state updates.
-- **Stateless-adjacent idea from Date**: timestamps are just numbers (ms since epoch); all date math reduces to integer arithmetic on milliseconds.
-- **Named export vs default export**: named = many per file, exact name required on import; default = one per file, any name allowed on import.
+## นิยามที่ต้องจำ
+- **Hoisting**: function declaration เรียกใช้ก่อนบรรทัดที่นิยามได้; function expression/arrow function ทำไม่ได้.
+- **Immutability (ผ่าน spread)**: สร้างสำเนา array/object ใหม่แทนการแก้ตัวเดิม — รูปแบบที่ใช้บ่อยตอนอัปเดต state.
+- **แนวคิดจาก Date**: timestamp เป็นแค่ตัวเลข (ms นับจาก epoch); การคำนวณวันที่ทั้งหมดลดรูปเหลือการบวกลบจำนวนเต็มบนมิลลิวินาที.
+- **Named export กับ default export**: named = หลายตัวต่อไฟล์, ต้อง import ด้วยชื่อตรง; default = ตัวเดียวต่อไฟล์, import ตั้งชื่ออะไรก็ได้.
 
-## Code / examples
+## โค้ด / ตัวอย่าง
 ```js
-// switch vs if/else
+// switch เทียบกับ if/else
 function getOrderStatusLabel(status) {
   switch (status) {
     case "pending": return "รอดำเนินการ";
@@ -38,7 +38,7 @@ function getOrderStatusLabel(status) {
   }
 }
 
-// destructuring + defaults straight in a function parameter
+// destructuring + default ในพารามิเตอร์ฟังก์ชันเลย
 function greetUser({ name, role = "guest" }) {
   console.log(`${name} (${role})`);
 }
@@ -57,19 +57,19 @@ try {
   if (error instanceof ApiError) console.log(error.statusCode, error.message);
 }
 
-// named vs default export
+// named เทียบกับ default export
 export function formatPrice(n) { return n.toLocaleString() + " บาท"; }
 export default function Button({ label }) { return `<button>${label}</button>`; }
 ```
 
-## Likely exam questions
-- Given a snippet using `var` inside a loop vs `let`, explain the scoping difference.
-- Why does `for...in` on an array give unexpected results? What should be used instead?
-- Trace output of a `for` loop with `break`/`continue` at specific iterations.
-- Difference between `map()`, `filter()`, and `reduce()` — write one that transforms an array of products into total cart price.
-- Write a function using object/array destructuring with default values to safely read a nested API response.
-- Explain why `new Date(2026, 0, 1)` is January 1, not month "0".
-- Write a regex to validate a Thai phone number / password rule, and use `.test()`.
-- What happens to code after a `throw` inside `try` if there's no matching `catch`?
-- Difference between named export and default export; write both import styles for a given module.
-- Explain what `finally` guarantees versus `catch`.
+## คำถามที่น่าจะออกสอบ
+- ให้ snippet ที่ใช้ `var` ในลูปเทียบกับ `let` แล้วอธิบายความต่างของ scope.
+- ทำไม `for...in` บน array ถึงให้ผลไม่คาดคิด? ควรใช้อะไรแทน?
+- ไล่ผลลัพธ์ของลูป `for` ที่มี `break`/`continue` ที่รอบเฉพาะเจาะจง.
+- ความต่างของ `map()`, `filter()`, `reduce()` — เขียนตัวที่แปลง array ของสินค้าเป็นราคารวมในตะกร้า.
+- เขียนฟังก์ชันที่ใช้ object/array destructuring พร้อม default value เพื่ออ่าน response API แบบซ้อนอย่างปลอดภัย.
+- อธิบายว่าทำไม `new Date(2026, 0, 1)` ถึงเป็น 1 มกราคม ไม่ใช่เดือน "0".
+- เขียน regex ตรวจเบอร์โทรไทย / กฎรหัสผ่าน แล้วใช้ `.test()`.
+- เกิดอะไรกับโค้ดหลัง `throw` ใน `try` ถ้าไม่มี `catch` ที่ตรงกัน?
+- ความต่างของ named export กับ default export; เขียนรูปแบบ import ทั้งสองแบบสำหรับ module ที่กำหนด.
+- อธิบายว่า `finally` การันตีอะไรเมื่อเทียบกับ `catch`.
